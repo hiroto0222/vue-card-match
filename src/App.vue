@@ -60,14 +60,29 @@ export default {
       });
     };
 
-    for (let i = 0; i < 16; i++) {
+    const cardItems = [1, 2, 3, 4, 5, 6, 7, 8];
+
+    cardItems.forEach((card) => {
       cardList.value.push({
-        value: 10,
-        visible: false,
-        position: i,
+        value: card,
+        visible: true,
+        position: null,
         matched: false,
       });
-    }
+      cardList.value.push({
+        value: card,
+        visible: true,
+        position: null,
+        matched: false,
+      });
+    });
+
+    cardList.value = cardList.value.map((card, idx) => {
+      return {
+        ...card,
+        position: idx,
+      };
+    });
 
     const flipCard = (payload) => {
       cardList.value[payload.position].visible = true;
